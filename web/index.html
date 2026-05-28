@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Securely store your digital heritage, passwords, crypto seeds and time-locked video messages.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Legacy Vault">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Legacy Vault</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Custom Loading Screen Styles -->
+  <style>
+    body {
+      background-color: #0A0E17;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Gradient Background Effect */
+    .bg-gradient {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at center, #1A112D 0%, #0A0E17 100%);
+      z-index: 0;
+    }
+
+    .loader-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Glowing Shield / Vault Icon Placeholder */
+    .shield {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7B1FA2 0%, #AB47BC 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 30px rgba(171, 71, 188, 0.4), inset 0 0 10px rgba(255,255,255,0.2);
+      animation: pulse 2s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .shield::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 35px;
+      border: 3px solid white;
+      border-radius: 4px 4px 15px 15px;
+    }
+
+    .shield::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 14px;
+      height: 12px;
+      border: 3px solid white;
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 20px rgba(171, 71, 188, 0.3), inset 0 0 10px rgba(255,255,255,0.1);
+      }
+      100% {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(171, 71, 188, 0.6), inset 0 0 15px rgba(255,255,255,0.3);
+      }
+    }
+
+    .title {
+      margin-top: 30px;
+      color: #FFFFFF;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.5s;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: #8899AA;
+      font-size: 13px;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.8s;
+    }
+
+    .progress-bar-container {
+      margin-top: 40px;
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1s forwards 1s;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 30%;
+      background: #26C6DA;
+      border-radius: 2px;
+      box-shadow: 0 0 10px #26C6DA;
+      animation: loading 2s infinite ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(400%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  
+  <div class="loader-container">
+    <div class="shield"></div>
+    <div class="title">Legacy Vault</div>
+    <div class="subtitle">INITIALIZING SECURE ENVIRONMENT</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+
+  <script>
+    // Customize the Flutter initialization process to hide our custom loader
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: async function(engineInitializer) {
+          // Initialize the Flutter engine
+          const appRunner = await engineInitializer.initializeEngine();
+          
+          // Run the app
+          await appRunner.runApp();
+          
+          // Hide the loader once the app is ready
+          const loader = document.querySelector('.loader-container');
+          const bg = document.querySelector('.bg-gradient');
+          if (loader) {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => loader.remove(), 500);
+          }
+          if (bg) {
+            bg.style.opacity = '0';
+            bg.style.transition = 'opacity 0.8s ease-out';
+            setTimeout(() => bg.remove(), 800);
+          }
+        }
+      });
+    });
+  </script>
+
+  <!-- Default bootstrap script provided by Flutter -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "49441798160",
+    "project_id": "legacy-vault-49a71",
+    "storage_bucket": "legacy-vault-49a71.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49441798160:android:82c399889c8d744ca6f295",
+        "android_client_info": {
+          "package_name": "com.zenhor.legacy_vault"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYlgJey_ShjvzUpJGGJmY0EtbIJZUyZwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,52 @@
+name: legacy_vault
+description: "Legacy Vault - Ultra-Secure Digital Heritage & Death Tech Application"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^4.9.0
+  firebase_auth: ^6.5.1
+  cloud_firestore: ^6.4.1
+  firebase_storage: ^13.4.1
+
+  # Encryption (AES-256)
+  encrypt: ^5.0.3
+  crypto: ^3.0.6
+
+  # Local secure storage for encryption keys
+  flutter_secure_storage: ^9.2.4
+
+  # Animations
+  flutter_animate: ^4.5.2
+
+  # Image picker (cross-platform, works on web too)
+  image_picker: ^1.1.2
+
+  # File picker (cross-platform)
+  file_picker: ^8.1.7
+
+  # URL launcher
+  url_launcher: ^6.3.1
+
+  # Intl for date formatting
+  intl: ^0.20.2
+
+  # Google Fonts
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
